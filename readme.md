@@ -1,94 +1,61 @@
-## React course outline 2022.
+# Components
 
-* [Introduction](#introduction)
-    * Installation
-    * React Elements
-* [Components](#components)
-    * Functions Components
-    * Class Components
-* [Props](#props)
-* [State in React](#state-in-react)
-* Component Interaction Communication
-* Iterating through lists
-* Calling REST API
-* Sending POST request
-* Building forms plus validation
-* Lifting State Up
-* Error boundaries
-* Fragments
-* Refs and DOM
-* Higher Order Components
-* Portals
-* Profiler
-* Render Props
-* Pure Components
-* Component Lifecycle Methods
-* Introduction to Hooks in React
-* useState Hook
-* useEffect Hook
-* useContext Hook
-* Custom Hooks
-* Routing
-* Protected Routes
-* Prevent Transition
-* Redux
+On the second day of reactjs, We share one of the most important concepts of react, components. 
+A component is like a javascript function that has a specific functionality.
+Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+
+There are two types of components, 
+- class based components
+- functional-based components
 
 
-## Introduction
+### Class components
+Class components are defined using the ES6 class. This was the only way of creating components before function components. But for now, I will be focused on the Functional based components which are easier and better with the use of hooks.
 
-Most cool kids are using react today, and this is due to the purpose of React, to be fast, scalable, and simple while allowing developers to create large web applications that can change data, without reloading the page. React is a JavaScript library used to build User Interfaces, it was made by Facebook in 2011, with its newsfeed being the first use case.
+### Functional based components
+Functional components were introduced in React v16.8. They can take in props (properties) just like parameters in javascript and may return HTML (using JSX) telling the browser how the UI should look like.
+When writing a component name, It's best to use a title case.
 
-React is declarative meaning it allows you to control the flow and state in your application by saying “It should look like this” as opposed to an imperative style which allows you to control your application by saying “This is what you should do”.
-
-### So Let’s Talk React
-
-### Installing React
-In order to be able to use Reactjs, you need to install node.js. If you don’t already have node installed on your computer, visit [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and select a version depending on your operating system.
-node.js comes with npm and npx. All we need to know for now is that the npm is a package manager for nodejs, and we shall see it in use when talking about using external libraries.
-
- To check which version of node and npm you have installed, you can use these commands in your terminal or commad prompt.
-```
-	node -v
-```
-```
-	npm -v
+```js
+function ComponentName(){  
+ return <h1>Hello, world</h1>  
+}
 ```
 
-Creating a React App
-One of the ways to create a react app is by using Create React App. This abstracts most of the hard work for us, including the need to know about the web packs and babels bundlers when we are just getting started. All this is done for us in the react-scripts, and we don’t have to hassle.
+The above component is similar to this class component
 
-So to create a react app we use the command,
+```js
+import React from 'react'
+
+class ComponentName extends React.component{  
+   render(){  
+      return <h1>Hello, world</h1>  
+   }  
+}
 ```
-	npx create-react-app my-react-app
+
+A React project usually contains many components which can interact with each other. To make a component accessible by another, you will need to expose it and later on import it.
+
+```js
+//ComponentOne.js
+function ComponentOne(){  
+    return <h1>Hello, world</h1>  
+}
+
+export default ComponentOne;
+
+// ComponentTwo.js
+import ComponentOne from './ComponentOne'
+
+function ComponentTwo(){  
+     return (  
+          <ComponentOne />  
+     )  
+}
+
+export default ComponentTwo;
 ```
 
-React App Structure
-Now that you have successfully started your reactjs app, lets take time to talk about the structure of any reactjs application you will build.
-
-The project comes with some folders and files that we will need to know a thing or two about, some more important than the others
-`node_modules`: 
-
-`public folder`: This folder contains static files like index.html, images, manifest.json and other assets, which don’t need to be processed by the webpack.
-
-`src` folder: which initially contains the App.js file, which you can edit the app.
-
-`src/index.js`: This the main/ entry file which allows you to import the parent file (App.js) as a module.
-	
-`src/App.js`: 
-	
-`src/index.css`:
-	
-`src/App.css`:
-	
-`src/App.test.js`:
-	
-`.gitignore`:
-	
-`package.json`: which holds a list of dependencies for your project plus some metadata like name, version etc.
-	
-`README.md`: 
-
-Conclusion
-I hope you reached this point successfully, Day one was a general introduction to the library and nothing complicated. You could check out day two, where I share about components, Class vs Functional components.
- 
-Thanks for reading.
+### Conclusion
+One of the pros of React is the reusability of components. I did mention about `props` and `state` but more of that in another part of the 7days.
+Happy coding.
